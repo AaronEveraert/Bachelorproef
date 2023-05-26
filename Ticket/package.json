@@ -1,0 +1,64 @@
+{
+  "name": "Ticket",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@openui5/sap.f": "^1",
+    "@openui5/sap.m": "^1",
+    "@openui5/sap.ui.core": "^1",
+    "@openui5/sap.ui.layout": "^1",
+    "@openui5/themelib_sap_fiori_3": "^1",
+    "@sap/cds": "^5",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.9.4",
+    "express": "^4"
+  },
+  "devDependencies": {
+    "@sap/ux-specification": "^1.108.5",
+    "@ui5/cli": "^2.14.4",
+    "eslint": "^4.19.1",
+    "sqlite3": "^5.0.8"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-ticket": "cds watch --open ticket/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-ticketadmin": "cds watch --open ticketadmin/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "env": {
+      "es2020": true,
+      "node": true,
+      "jest": true,
+      "mocha": true
+    },
+    "globals": {
+      "SELECT": true,
+      "INSERT": true,
+      "UPDATE": true,
+      "DELETE": true,
+      "CREATE": true,
+      "DROP": true,
+      "CDL": true,
+      "CQL": true,
+      "CXL": true,
+      "cds": true
+    },
+    "rules": {
+      "no-console": "off",
+      "require-atomic-updates": "off"
+    }
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "sqlite",
+        "credentials": {
+          "database": "db/my-tickets.db"
+        }
+      }
+    }
+  }
+}

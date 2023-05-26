@@ -1,0 +1,87 @@
+<mvc:View
+    controllerName="ticketadmin.controller.Worklist"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:semantic="sap.f.semantic">
+
+    <semantic:SemanticPage
+        id="page"
+        headerPinnable="false"
+        toggleHeaderOnTitleClick="false">
+
+        <semantic:titleHeading>
+            <Title
+                text="{i18n>worklistTitle}"
+                level="H2"/>
+        </semantic:titleHeading>
+
+        <semantic:content>
+            <Table
+                id="table"
+                width="auto"
+                items="{
+                    path: '/Tickets',
+                    sorter: {
+                        path: 'ID',
+                        descending: false
+                    }
+                }"
+               >
+
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Title
+                            id="tableHeader"
+                            text="{worklistView>/worklistTableTitle}"
+                            level="H3"/>
+                        <ToolbarSpacer /> 
+                        <SearchField
+                            id="searchField"
+                            tooltip="{i18n>worklistSearchTooltip}"
+                            search=".onSearch">
+                            <layoutData>
+                                <OverflowToolbarLayoutData
+                                    maxWidth="200px"
+                                    priority="NeverOverflow"/>
+                            </layoutData>
+                        </SearchField>
+                        
+                    </OverflowToolbar>
+                </headerToolbar>
+
+                <columns>
+			
+			<Column>
+				<Text text="Title" />
+			</Column>
+			<Column>
+				<Text text="Type" />
+			</Column>
+            <Column>
+				<Text text="Status" />
+			</Column>
+            <Column>
+				<Text text="Name" />
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem vAlign="Middle" type="Navigation" press=".onPress">
+				<cells>
+					
+					<Text text="{title}" wrapping="false"/>
+					<Text text="{type}" />
+                    <Text text="{status}" />
+                    
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+        </semantic:content>
+
+        <semantic:sendEmailAction>
+            <semantic:SendEmailAction id="shareEmail" press=".onShareEmailPress"/>
+        </semantic:sendEmailAction>
+
+    </semantic:SemanticPage>
+
+</mvc:View>
