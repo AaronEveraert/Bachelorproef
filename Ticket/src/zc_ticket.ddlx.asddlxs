@@ -1,0 +1,72 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'Ticket',
+    title: { type: #STANDARD ,  value: 'Title'   },
+    description: {
+    label: 'Root entity',
+    type: #STANDARD,
+    value: 'TicketId'
+  } }}
+annotate view ZC_TICKET
+    with 
+{   
+    @UI.facet: [
+   {
+     label: 'General Information',
+     id: 'GeneralInfo',
+     type: #COLLECTION,
+     position: 10
+   },
+   {
+     label: 'General',
+     id: 'Call',
+     type: #IDENTIFICATION_REFERENCE,
+     purpose: #STANDARD,
+     parentId: 'GeneralInfo',
+     position: 10
+   },
+   {
+     id: 'Additionalinfo',
+     purpose: #STANDARD,
+     type: #FIELDGROUP_REFERENCE,
+     parentId: 'GeneralInfo',
+     label: 'Additional Information',
+     position: 30,
+     targetQualifier: 'AdditionalGroup'
+   }]
+    
+    
+    
+    
+    TicketId;
+    
+    @UI: {lineItem:       [ { position: 10 } ],
+        identification: [ { position: 10 } ]}
+    Title;
+    @UI: {   multiLineText: true,
+      identification: [ { position: 20 } ]}
+    Description;
+    
+    @UI: {lineItem:       [ { position: 30 } ],
+        identification: [ { position: 30 } ]}
+    Type;
+    @UI: {lineItem:       [ { position: 40 } ],
+        identification: [ { position: 40 } ]}
+    Status;
+    
+    
+     @UI: {lineItem:       [ { position: 50 } ],
+        identification: [ { position: 50 } ]}
+    CreatedAt;
+        
+        
+     @UI: {
+      fieldGroup: [{ qualifier: 'AdditionalGroup', position: 10}]}    
+    Name;
+     @UI: {
+      fieldGroup: [{ qualifier: 'AdditionalGroup', position: 20 }]}
+    ContactEmail;
+   
+
+}

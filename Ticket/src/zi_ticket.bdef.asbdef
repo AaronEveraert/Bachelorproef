@@ -1,0 +1,44 @@
+managed implementation in class zbp_i_ticket unique;
+//strict ( 1 );
+
+define behavior for ZI_Ticket //alias <alias_name>
+persistent table ztickets
+lock master
+//authorization master ( instance )
+etag master LocalLastChangedAt
+{
+
+   create;
+
+   delete;
+
+  field ( mandatory ) Title, Type,Name,ContactEmail;
+  field ( numbering : managed, readonly ) TicketId;
+  field ( readonly ) Status, Solution, LastChangedAt, LastChangedBy, CreatedAt, CreatedBy;
+
+
+  validation validateTitle on save { field Title; create; update; }
+  validation validatNameIsFilled on save { field Name; create; update; }
+  validation validateType on save { field Type; create; update; }
+  validation validatContactEmailIsFilled on save { field ContactEmail; create; update; }
+
+  determination setInitialStatus on modify { create; }
+
+  mapping for ztickets
+  {
+    TicketId = ticket_id;
+    Title = title;
+    Description = description;
+    Type = type;
+    Status = status;
+    Name = name;
+    ContactEmail = contact_email;
+
+    CreatedBy          = created_by;
+    CreatedAt          = created_at;
+    LastChangedBy      = last_changed_by;
+    LastChangedAt      = last_changed_at;
+    LocalLastChangedAt = local_last_changed_at;
+
+  }
+}

@@ -1,0 +1,4 @@
+@EndUserText.label: 'Serv def for ZC_Tickets'
+define service ZUI_Tickets {
+  expose ZC_TICKET;
+}
